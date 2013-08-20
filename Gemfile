@@ -16,6 +16,7 @@ gem 'activerecord'
 gem 'rake'
 
 gem 'shotgun'
+gem 'mini_magick'
 
 group :test do
   gem 'faker'
