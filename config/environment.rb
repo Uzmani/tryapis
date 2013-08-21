@@ -32,3 +32,14 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
+
+require 'oauth'
+require 'yaml'
+
+# var c = map.getCenter();
+
+# window.content += "<% auth = YAML.load(File.open('auth.yaml')) %>
+# <% consumer = OAuth::Consumer.new(auth['consumer_key'], auth['consumer_secret'], {:site => 'http://api.yelp.com'}) %>
+# <% access_token = OAuth::AccessToken.new(consumer, auth['token'], auth['token_secret']) %>
+# <% path = '/v2/search?term="+result.name+"&location=new%20york' %>
+# <% access_token.get(path).body %>"

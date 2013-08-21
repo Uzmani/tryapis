@@ -95,7 +95,7 @@ function initialize() {
 	infoWindow = new google.maps.InfoWindow();
   service = new google.maps.places.PlacesService(map);
 
-  google.maps.event.addListenerOnce(map, 'bounds_changed', performSearch);
+  google.maps.event.addListener(map, 'bounds_changed', performSearch);
 }
 
 function performSearch() {
@@ -141,7 +141,7 @@ function createMarker(place) {
       if (result.photos) {
         $.each(result.photos, function(index, photo) {
           if (result.photos.length == 1) {
-            window.content += "<img id='last-photo' src='"+photo.getUrl({'maxWidth': 350, 'maxHeight': 350})+"' />";
+            window.content += "<img id='last-photo' class='first-photo' src='"+photo.getUrl({'maxWidth': 350, 'maxHeight': 350})+"' />";
           } else if (index == (result.photos.length - 1)) {
             window.content += "<img id='last-photo' class='hidden' src='"+photo.getUrl({'maxWidth': 350, 'maxHeight': 350})+"' />";
           } else if (index == 0) {
@@ -151,6 +151,7 @@ function createMarker(place) {
           }
         });
       }
+
       infoWindow.setContent(window.content);
       infoWindow.open(map, marker);
     });
@@ -168,6 +169,11 @@ $(document).ready(function() {
 $(document).on("click", "#image", function() {
     $(this).next(".hidden").removeClass("hidden");
     $(this).addClass("hidden");
+});
+
+$(document).on("click", "#last-photo", function() {
+  $(this).addClass("hidden");
+  $('.first-photo').removeClass("hidden");
 });
 
 google.maps.event.addDomListener(window, 'load', initialize);
